@@ -1,0 +1,60 @@
+.weather-sheet {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.weather-sheet__item {
+  display: grid;
+  justify-items: flex-start;
+  gap: 20px;
+  max-width: 500px;
+  width: 100%;
+  padding: 25px 20px;
+  background: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1px solid  rgba(0,0,0,.3);
+}
+
+.weather-sheet__inline {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+
+.weather-sheet__feelings {
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: right;
+}
+
+.weather-sheet__temp-value {
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.weather-sheet__props {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 15px;
+}
+
+.weather-sheet__props-item {
+  display: flex;
+  align-items: center;
+}
+
+.weather-sheet__props-item svg {
+  width: 24px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.weather-sheet__spacer {
+  width: 100%;
+  background-color: rgba(0,0,0,.3);
+}
