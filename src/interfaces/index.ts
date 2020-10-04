@@ -1,14 +1,7 @@
-import { TWeather } from "../types"
+import { TItemProps, TWeather } from "../types"
 
 export interface IWeatherForDay {
-
-}
-
-export interface IWeatherSheetProps {
-    weatherForDay: Array<IWeatherForDay>
-}
-
-export type IItemProps = {
+    dt: number,
     dt_txt: string,
     temp: number,
     feels_like: number,
@@ -18,6 +11,10 @@ export type IItemProps = {
     pop: number,
 }
 
+export interface IWeatherSheetProps {
+    weatherForDay: Array<IWeatherForDay>
+}
+
 export interface IWeatherSheetItemProps {
-    data: IItemProps
+    data: TItemProps
 }

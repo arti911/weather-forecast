@@ -14,7 +14,7 @@ import { IWeatherForDay } from "./interfaces"
 const App: React.FC = () => {
   const [city, setCity] = useState<string>("");
   const [time, setTime] = useState<string>(moment().format("HH:mm"));
-  const [weatherForDay, setWeatherForDay] = useState<IWeatherForDay[]>([]);
+  const [weatherForDay, setWeatherForDay] = useState<Array<IWeatherForDay>>([]);
   const [currentDate, securrentDate] = useState<Date>(new Date());
   const [loading, setLoading] = useState<boolean>(true);
 
