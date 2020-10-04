@@ -6,23 +6,26 @@ import Wind from "../../assets/icons/wind"
 import Cloud from "../../assets/icons/cloud"
 import Drop from "../../assets/icons/drop"
 
-const WeatherSheetItem = props => {
-  const dt_txt = get(props, "data.dt_txt", "")
-  const temp = get(props, "data.main.temp", 0)
-  const feels_like = get(props, "data.main.feels_like", 0)
-  const weather = get(props, "data.weather", [])
-  const speed = get(props, "data.wind.speed", 0)
-  const clouds = get(props, "data.clouds.all", 0)
-  const pop = get(props, "data.pop", 0)
+import { IWeatherSheetItemProps } from "../../interfaces"
+import { TWeather } from "../../types";
 
-  const determineTemperature = (temp) => (temp > 0 ? `+${temp.toFixed(0)}` : temp.toFixed(0));
+const WeatherSheetItem: React.FC<IWeatherSheetItemProps> = props => {
+  let dt_txt: string = get(props, "data.dt_txt", "")
+  const temp: number = get(props, "data.main.temp", 0)
+  const feels_like: number = get(props, "data.main.feels_like", 0)
+  const weather: Array<TWeather> = get(props, "data.weather", [])
+  const speed: number = get(props, "data.wind.speed", 0)
+  const clouds: number = get(props, "data.clouds.all", 0)
+  const pop: number = get(props, "data.pop", 0)
+
+  const determineTemperature = (temp: number): (number | string) => (temp > 0 ? `+${temp.toFixed(0)}` : temp.toFixed(0));
 
   return (
     <div className={"weather-sheet__item"} >
       <div className={"weather-sheet__basic"}>
         <div className={"weather-sheet__temp-value weather-sheet__inline"}>{determineTemperature(temp)}&#176;</div>
         <div className={"weather-sheet__feelings weather-sheet__inline"}>
-          {weather.map((item) => (
+          {weather.map((item: TWeather) => (
             <div className={"weather-sheet__condition"} key={item.id}>
               {item.description}
             </div>

@@ -6,8 +6,8 @@ import calendar from "../../assets/calendar.png"
 
 import { DateContext } from "../../context"
 
-const NoForecast = () => {
-    const date = useContext(DateContext);
+const NoForecast: React.FC = () => {
+    const date = useContext<Date>(DateContext);
 
     return (
     <div className={"no-forecast"}>

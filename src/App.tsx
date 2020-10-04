@@ -9,17 +9,19 @@ import { DateContext } from "./context"
 import Spin from "./components/Spin"
 import WeatherSheet from "./components/WeatherSheet"
 
-const App = () => {
-  const [city, setCity] = useState("");
-  const [time, setTime] = useState(moment().format("HH:mm"));
-  const [weatherForDay, setWeatherForDay] = useState([]);
-  const [currentDate, securrentDate] = useState(new Date());
-  const [loading, setLoading] = useState(true);
+import { IWeatherForDay } from "./interfaces"
+
+const App: React.FC = () => {
+  const [city, setCity] = useState<string>("");
+  const [time, setTime] = useState<string>(moment().format("HH:mm"));
+  const [weatherForDay, setWeatherForDay] = useState<IWeatherForDay[]>([]);
+  const [currentDate, securrentDate] = useState<Date>(new Date());
+  const [loading, setLoading] = useState<boolean>(true);
 
   const url =
     "//api.openweathermap.org/data/2.5/forecast?q=Kazan&lang=ru&units=metric&appid=c4421a76df1ebaf51fc8f1042a0fd8de";
 
-  const selectedDay = value => securrentDate(value)
+  const selectedDay = (value: Date): void => securrentDate(value)
 
   useEffect(() => {
     setInterval(() => {
@@ -29,23 +31,28 @@ const App = () => {
 
   useEffect(() => {
     const getWather = async () => {
-      setLoading(true)
-      const weather = await fetch(url);
-  
-      if (weather.ok) {
-        const { list, city } = await weather.json();
-        
-        const temperatureForDay = list.filter((item) => {
-          const date = new Date(get(item, "dt_txt", ""));
-          if (moment(currentDate).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD")) {
-            return item
-          }
-        });
-  
-        setCity(get(city, "name", ""))
-        setWeatherForDay(temperatureForDay)
+      try {
+        setLoading(true)
+        const weather = await fetch(url);
+
+        if (weather.ok) {
+          const { list, city } = await weather.json();
+
+          const temperatureForDay = list.filter((item) => {
+            const date = new Date(get(item, "dt_txt", ""));
+            if (moment(currentDate).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD")) {
+              return item
+            }
+          });
+
+          setCity(get(city, "name", ""))
+          setWeatherForDay(temperatureForDay)
+          setLoading(false)
+        }
+      } catch (e) {
         setLoading(false)
       }
+
     };
 
     getWather();

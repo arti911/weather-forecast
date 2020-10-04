@@ -3,10 +3,12 @@ import WeatherSheetItem from "../WeatherSheetItem"
 import NoForecast from "../NoForecast"
 import { get } from "lodash"
 
+import { IWeatherSheetProps } from "../../interfaces"
 import "./WeatherSheet.css";
 
-const WeatherSheet = props => {
-  const weatherForDay = get(props, "weatherForDay", [])
+
+const WeatherSheet: React.FC<IWeatherSheetProps> = props => {
+  const weatherForDay: any[] = get(props, "weatherForDay", [])
 
   return (
     weatherForDay.length ?
