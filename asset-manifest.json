@@ -1,26 +1,23 @@
 {
   "files": {
-    "main.css": "/weather-forecast/static/css/main.bfe0a763.chunk.css",
-    "main.js": "/weather-forecast/static/js/main.feea5d56.chunk.js",
-    "main.js.map": "/weather-forecast/static/js/main.feea5d56.chunk.js.map",
+    "main.css": "/weather-forecast/static/css/main.6b8809f5.chunk.css",
+    "main.js": "/weather-forecast/static/js/main.08de322d.chunk.js",
+    "main.js.map": "/weather-forecast/static/js/main.08de322d.chunk.js.map",
     "runtime-main.js": "/weather-forecast/static/js/runtime-main.f2cddf36.js",
     "runtime-main.js.map": "/weather-forecast/static/js/runtime-main.f2cddf36.js.map",
-    "static/css/2.ff5b8310.chunk.css": "/weather-forecast/static/css/2.ff5b8310.chunk.css",
-    "static/js/2.e16966db.chunk.js": "/weather-forecast/static/js/2.e16966db.chunk.js",
-    "static/js/2.e16966db.chunk.js.map": "/weather-forecast/static/js/2.e16966db.chunk.js.map",
+    "static/js/2.7dbe3745.chunk.js": "/weather-forecast/static/js/2.7dbe3745.chunk.js",
+    "static/js/2.7dbe3745.chunk.js.map": "/weather-forecast/static/js/2.7dbe3745.chunk.js.map",
     "index.html": "/weather-forecast/index.html",
-    "precache-manifest.f6591ff4fabb1fd02e3cabeedb692f19.js": "/weather-forecast/precache-manifest.f6591ff4fabb1fd02e3cabeedb692f19.js",
+    "precache-manifest.c68874e29af63ec3ea03b354011d0505.js": "/weather-forecast/precache-manifest.c68874e29af63ec3ea03b354011d0505.js",
     "service-worker.js": "/weather-forecast/service-worker.js",
-    "static/css/2.ff5b8310.chunk.css.map": "/weather-forecast/static/css/2.ff5b8310.chunk.css.map",
-    "static/css/main.bfe0a763.chunk.css.map": "/weather-forecast/static/css/main.bfe0a763.chunk.css.map",
-    "static/js/2.e16966db.chunk.js.LICENSE.txt": "/weather-forecast/static/js/2.e16966db.chunk.js.LICENSE.txt",
+    "static/css/main.6b8809f5.chunk.css.map": "/weather-forecast/static/css/main.6b8809f5.chunk.css.map",
+    "static/js/2.7dbe3745.chunk.js.LICENSE.txt": "/weather-forecast/static/js/2.7dbe3745.chunk.js.LICENSE.txt",
     "static/media/calendar.png": "/weather-forecast/static/media/calendar.9f6dd7fc.png"
   },
   "entrypoints": [
     "static/js/runtime-main.f2cddf36.js",
-    "static/css/2.ff5b8310.chunk.css",
-    "static/js/2.e16966db.chunk.js",
-    "static/css/main.bfe0a763.chunk.css",
-    "static/js/main.feea5d56.chunk.js"
+    "static/js/2.7dbe3745.chunk.js",
+    "static/css/main.6b8809f5.chunk.css",
+    "static/js/main.08de322d.chunk.js"
   ]
 }
