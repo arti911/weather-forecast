@@ -1,24 +1,19 @@
 import React from "react";
 import WeatherSheetItem from "../WeatherSheetItem"
 import NoForecast from "../NoForecast"
-import { get } from "lodash"
 
-import { IWeatherSheetProps, IWeatherForDay } from "../../interfaces"
-import "./WeatherSheet.css";
+import { IWeatherForDay } from "../../interfaces";
 
+import "./style.scss";
 
-const WeatherSheet: React.FC<IWeatherSheetProps> = props => {
-  const weatherForDay: Array<IWeatherForDay> = get(props, "weatherForDay", [])
-
-  return (
-    weatherForDay.length ?
-      (
-        <section className={"weather-sheet"}>
-          <h2>Погода на сегодня</h2>
-          {weatherForDay.map((item) => <WeatherSheetItem data={item} key={item.dt} />)}
-        </section>
-      ) : <NoForecast />
+const WeatherSheet = (props: { list: IWeatherForDay[] }) => (
+  props.list.length > 0 ?
+    (
+      <section className={"weather-sheet"}>
+        <h2>Погода на сегодня</h2>
+        {props.list.map((item) => <WeatherSheetItem data={item} key={item.dt} />)}
+      </section>
+    ) : <NoForecast />
   )
-}
 
 export default WeatherSheet;

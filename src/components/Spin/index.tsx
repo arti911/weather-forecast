@@ -1,13 +1,13 @@
-import React from "react"
+import React from "react";
 
-import "./Spin.css"
+import "./Spin.css";
 
-const Spin: React.FC = () => (
-    <div className={"loader"}>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-)
+const Spin = () => (
+  <div className={"loader"}>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+);
 
-export default Spin
+export default Spin;

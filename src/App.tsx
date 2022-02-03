@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
-import DatePicker from "react-horizontal-datepicker";
 import moment from "moment";
 import { get } from "lodash"
 
-import "./App.css";
-
-import { DateContext } from "./context"
 import Spin from "./components/Spin"
 import WeatherSheet from "./components/WeatherSheet"
+import CurrencyConverter from "./app/CurrencyConverter";
 
-import { IWeatherForDay } from "./interfaces"
+import { IWeatherForDay, IWeatherSheetProps } from "./interfaces"
+import { getData } from "./query";
+import { WEATHER_API_KEY, WEATHER_URL } from "./constants";
+import { getTodayWeather, qs } from "./utils";
 
-const App: React.FC = () => {
+const App = () => {
   const [city, setCity] = useState<string>("");
   const [time, setTime] = useState<string>(moment().format("HH:mm"));
-  const [weatherForDay, setWeatherForDay] = useState<Array<IWeatherForDay>>([]);
-  const [currentDate, securrentDate] = useState<Date>(new Date());
+  const [weatherForDay, setWeatherForDay] = useState<IWeatherForDay[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const url =
-    "//api.openweathermap.org/data/2.5/forecast?q=Kazan&lang=ru&units=metric&appid=c4421a76df1ebaf51fc8f1042a0fd8de";
-
-  const selectedDay = (value: Date): void => securrentDate(value)
+  const [ params, setParams] = useState({
+    q: "Kazan",
+    lang: "ru",
+    units: "metric",
+    appid: WEATHER_API_KEY,
+  });
 
   useEffect(() => {
     setInterval(() => {
@@ -30,45 +31,41 @@ const App: React.FC = () => {
   }, [time])
 
   useEffect(() => {
-    const getWather = async () => {
+    setLoading(true);
+
+    (async () => {
       try {
-        setLoading(true)
-        const weather = await fetch(url);
+        const response = await getData<IWeatherSheetProps>(`${WEATHER_URL}?${qs(params)}`);
 
-        if (weather.ok) {
-          const { list, city } = await weather.json();
-
-          const temperatureForDay = list.filter((item) => {
-            const date = new Date(get(item, "dt_txt", ""));
-            if (moment(currentDate).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD")) {
-              return item
-            }
-          });
-
-          setCity(get(city, "name", ""))
-          setWeatherForDay(temperatureForDay)
-          setLoading(false)
-        }
+        setCity(get(response.city, "name", ""))
+        setWeatherForDay(getTodayWeather(response.list));
       } catch (e) {
+        console.log("---e", e);
+      } finally {
         setLoading(false)
       }
-
-    };
-
-    getWather();
-  }, [currentDate]);
+    })();
+  }, [ params ]);
 
   return (
-    <DateContext.Provider value={currentDate}>
-      <div className="App">
-        <h1>Погода {city}</h1>
-        <div>Сейчас {time}</div>
-        <div style={{ maxWidth: "340px", margin: "20px auto 0" }}>
-          <DatePicker className={"datepicker"} getSelectedDay={selectedDay} selectDate={currentDate} labelFormat={"MMMM yyyy"} endDate={1001} color={"rgb(0, 0, 0)"} />
-        </div>
-        {loading ? <Spin /> : <WeatherSheet weatherForDay={weatherForDay} />}
-      </div>
-    </DateContext.Provider>
+    <div className="app">
+      <header className="app__header">
+        <span><b>{city}</b></span>
+        &nbsp;
+        <span style={{ fontSize: "12px" }}>{time}</span>
+      </header>
+
+      <aside className="app__aside">
+        <CurrencyConverter />
+      </aside>
+
+      <main className="app__main">
+        {loading
+          ? <Spin />
+          : <WeatherSheet list={weatherForDay} />
+        }
+      </main>
+    </div>
   );
 };
 
