@@ -9,7 +9,7 @@ import Drop from "../../assets/icons/drop";
 import { IWeatherSheetItemProps } from "../../interfaces";
 import { TWeather } from "../../types";
 
-const WeatherSheetItem: React.FC<IWeatherSheetItemProps> = (props) => {
+export const WeatherSheetItem = (props: IWeatherSheetItemProps) => {
   let dt_txt: string = get(props, "data.dt_txt", "");
   const temp: number = get(props, "data.main.temp", 0);
   const feels_like: number = get(props, "data.main.feels_like", 0);
@@ -57,5 +57,3 @@ const WeatherSheetItem: React.FC<IWeatherSheetItemProps> = (props) => {
     </div>
   );
 };
-
-export default WeatherSheetItem;
