@@ -1,6 +1,6 @@
 import { TItemProps, TWeather } from "../types";
 
-export interface IWeatherForDay {
+export interface WeatherForDayDTO {
   dt: number;
   dt_txt: string;
   temp: number;
@@ -12,7 +12,7 @@ export interface IWeatherForDay {
 }
 
 export interface IWeatherSheetProps {
-  list: IWeatherForDay[];
+  list: WeatherForDayDTO[];
   city?: {
     id: number;
     name: string;

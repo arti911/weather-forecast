@@ -8,14 +8,14 @@
 
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f4f4f3;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -24,22 +24,24 @@ code {
   grid-template-areas: "header" "aside" "main";
   gap: 16px;
   padding: 16px;
-  
-  @media (min-width: 768px) {
+}
+
+@media (min-width: 768px) {
+  .app {
     grid-template-areas: "header header" "aside main";
     grid-template-columns: auto 1fr;
     padding: 24px;
   }
+}
 
-  & &__header {
-    grid-area: header;
-  }
+.app .app__header {
+  grid-area: header;
+}
 
-  & &__aside {
-    grid-area: aside;
-  }
+.app .app__aside {
+  grid-area: aside;
+}
 
-  & &__main {
-    grid-area: main;
-  }
+.app .app__main {
+  grid-area: main;
 }

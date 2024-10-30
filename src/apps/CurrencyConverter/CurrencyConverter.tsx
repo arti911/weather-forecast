@@ -7,13 +7,14 @@ import {
   FREE_CURRENCY_API_KEY,
   FREE_CURRENCY_URL
 } from "../../constants";
-import { ILatestFree } from "./interface";
+import { ILatestFree } from "./types";
 
-import "./style.scss";
 import { COUNTRU } from "../../data";
-import Select from "../../components/Select";
+import { Select } from "../../components";
 
-const CurrencyConverter = () => {
+import "./CurrencyConverter.css";
+
+export const CurrencyConverter = () => {
   const [convert, setConvert] = useState<{
     left: string;
     right: string;
@@ -23,7 +24,7 @@ const CurrencyConverter = () => {
   });
   const [amount, setAmount] = useState<string>("1000");
   const [currency, setCurrency] = useState<{ [key: string]: number }>();
-  const [ loading, setLoading ] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const query = {
     apikey: FREE_CURRENCY_API_KEY,
@@ -42,7 +43,7 @@ const CurrencyConverter = () => {
       } catch (error) {
         console.log("---error", error);
       } finally {
-          setLoading(false);
+        setLoading(false);
       }
     })();
   }, [convert]);
@@ -89,25 +90,24 @@ const CurrencyConverter = () => {
         />
       </div>
       <div style={{ position: "relative" }}>
-        { !loading
-            ? (<>
-                <div className="currency-converter__result">
-                  {currency && (+amount / currency[convert.left])?.toFixed(2)}{" "}
-                  {convert.right}
-                </div>
-                <div className="currency-converter__rates">
-                  {currency && currency[convert.left]?.toFixed(2)} {convert.left} за 1{" "} {convert.right}
-                </div>
-            </>)
-            : "Загрузка..."
+        {!loading
+          ? (<>
+            <div className="currency-converter__result">
+              {currency && (+amount / currency[convert.left])?.toFixed(2)}{" "}
+              {convert.right}
+            </div>
+            <div className="currency-converter__rates">
+              {currency && currency[convert.left]?.toFixed(2)} {convert.left} за 1{" "} {convert.right}
+            </div>
+          </>)
+          : "Загрузка..."
         }
       </div>
       <div className="currency-converter__field">
         <input type="number" value={amount} onChange={onAmountChange} />
-        { convert.left}
+        {convert.left}
       </div>
     </div>
   );
 };
 
-export default CurrencyConverter;
